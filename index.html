@@ -1,16 +1,71 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Drag & Drop File Uploader</h1>
+
+   <div class="drop_area" id="dropZone">
+        Drop your Image Here
+        <span>or</span>
+        <button type="button" id="choose_btn">Choose File</button>
+
+
+        <input type="file" class="image_inp_c" name="image_inp" id="image_inp" draggable="false" hidden>
+    </div>
+    <img id="preview" width="500" height="300" style="display: none;">
+    <label for="image_inp" type="button" id="choose_btn">Choose File</label>
+
+
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html> -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Drag & Drop File Uploader</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <input type="file" class="image_inp_c" name="image_inp" id="image_inp"  draggable="false" hidden>
-    <img id="preview" width="500" height="300" style="display: none;">
-    <button type="button" id="choose_btn" >Choose File</button>
+    <div class="container">
+        <h1>📁 Drag & Drop File Uploader</h1>
+        
+        <div class="drop-zone" id="dropZone">
+            <div class="drop-zone-icon">📤</div>
+            <div class="drop-zone-text">Drag & Drop your images here</div>
+            <div class="drop-zone-hint">or</div>
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                Browse Files
+            </button>
+            <input type="file" id="fileInput" accept="image/jpeg,image/png,image/gif">
+        </div>
 
-    <script src="script.js"></script>
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill">0%</div>
+            </div>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+    <div class="preview-container" id="previewContainer">
+        <div class="preview-title">Uploaded Images</div>
+        <div class="preview-grid" id="previewGrid"></div>
+        <button class="clear-all-btn" id="clearAllBtn">Clear All</button>
+    </div>
+
+    <script src="./script.js"></script>
 </body>
 </html>
