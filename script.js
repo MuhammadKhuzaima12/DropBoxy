@@ -1,49 +1,3 @@
-// const choose_btn = document.getElementById("choose_btn");
-// const image_inp = document.getElementById("image_inp");
-// const preview = document.getElementById("preview");
-// const dropZone = document.getElementById("dropZone");
-
-// // console.log(choose_btn,image_inp)
-// choose_btn.addEventListener("click", () => {
-//     preview.style.display = "none";
-//     // image_inp.click();
-//     // image_inp.hidden = false;
-// })
-
-// // image_inp.addEventListener("change", () => {
-// //     const file = image_inp.files[0];
-// //     preview.style.display = "block";
-// //     image_inp.hidden = true;
-// //     image_inp.value = "";
-// //     preview.src = URL.createObjectURL(file);
-// // });
-
-// // Drag events
-// dropZone.addEventListener("dragover", (event) => {
-//     event.preventDefault();
-//     dropZone.classList.add("drag");
-// });
-
-// dropZone.addEventListener("dragleave", () => {
-//     dropZone.classList.remove("drag");
-// });
-
-// dropZone.addEventListener("drop", (event) => {
-//     event.preventDefault();
-//     dropZone.classList.remove("drag");
-//     image_inp.files = event.dataTransfer.files;
-//     handleFile();
-// });
-
-
-// function handleFile() {
-//     const file = image_inp.files[0];
-//     if (!file) return;
-//     fileName.textContent = file.name;
-//     preview.src = URL.createObjectURL(file);
-//     preview.hidden = false;
-// }
-
 const dropZone = document.getElementById('dropZone');
 const fileInput = document.getElementById('fileInput');
 const progressContainer = document.getElementById('progressContainer');
@@ -51,6 +5,7 @@ const progressFill = document.getElementById('progressFill');
 const errorMessage = document.getElementById('errorMessage');
 const previewContainer = document.getElementById('previewContainer');
 const previewGrid = document.getElementById('previewGrid');
+const imageCounter = document.getElementById('imageCounter')
 const clearAllBtn = document.getElementById('clearAllBtn');
 
 let uploadedImages = [];
@@ -61,6 +16,8 @@ window.addEventListener('load', () => {
     uploadedImages = stored;
     if (uploadedImages.length > 0) {
         displayPreviews();
+    } else {
+        updateImageCounter();
     }
 });
 
@@ -97,7 +54,7 @@ dropZone.addEventListener('drop', (event) => {
 
 // Handle file input change
 fileInput.addEventListener('change', (event) => {
-    handleFiles(e.target.files);
+    handleFiles(event.target.files);
 });
 
 function handleFiles(files) {
@@ -171,6 +128,8 @@ function displayPreviews() {
     });
 
     previewContainer.style.display = uploadedImages.length > 0 ? 'block' : 'none';
+
+    updateImageCounter();
 }
 
 function removeImage(id) {
@@ -181,6 +140,13 @@ function removeImage(id) {
 
 function saveToStorage() {
     localStorage.setItem('uploadedImages', JSON.stringify(uploadedImages));
+}
+
+function updateImageCounter() {
+    const count = uploadedImages.length;
+    imageCounter.innerText = count === 1
+        ? '1 Image'
+        : `${count} Images`;
 }
 
 clearAllBtn.addEventListener('click', () => {
