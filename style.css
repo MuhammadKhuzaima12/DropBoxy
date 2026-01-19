@@ -87,7 +87,6 @@ h1 {
 
 .upload-btn:hover {
     transform: translateY(-2px);
-    /* background: white; */
     color: black;
     font-weight: bolder;
 }
